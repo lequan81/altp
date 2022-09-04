@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI LA TRIEU PHU</title>
+  <link rel="icon" href="#" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript" src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <!-- Modal Section -->
+  <div class="modal h-screen w-full bg-[#394264]">
+    <!-- start Quiz button -->
+    <div class="start_btn absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <button class="rounded-lg bg-blue-500 text-white text-xl font-semibold py-3 p-4 hover:bg-blue-600 shadow-xl">
+        Start Quiz
+      </button>
+    </div>
+    <!-- Info Box -->
+    <div
+      class="info_box absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[540px] bg-white rounded-lg opacity-0 pointer-events-none">
+      <div
+        class="info-title flex items-center px-8 h-[60px] w-full border-solid border-b border-[#d3d3d3] text-2xl font-bold">
+        <span>Some Rules of this Quiz</span>
+      </div>
+      <div class="info-list mx-0 my-1 text-xl py-4 px-8">
+        <div class="rules border-solid border-b border-[#d3d3d3] pb-3">
+          <div class="info">1. You will have only <span class="text-[#007bff] font-bold">40 seconds</span> per question.
+          </div>
+          <div class="info">2. Once you select your answer, it can't be undone.</div>
+          <div class="info">3. You can't select any option once time goes off.</div>
+          <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+          <div class="info">5. This game have two <span class="text-[#007bff] font-bold">milestones.</span></div>
+          <div class="info">6. Your first milestone is <span class="text-[#007bff] font-bold">question No.3</span></div>
+          <div class="info">7. Your second milestone is <span class="text-[#007bff] font-bold">question No.9</span></div>
+        </div>
+        <div class="mt-4">
+          <div class="info"><span class="text-[#007bff] font-bold"><i class="fas fa-balance-scale"></i> 50/50</span>
+            - Remove two wrong answers.</div>
+          <div class="info"><span class="text-[#007bff] font-bold"><i class="fas fa-shield-alt"></i> Second
+              Chance</span>
+            - Have a second chance to get acorrect answer.</div>
+          <div class="info"><span class="text-[#007bff] font-bold"><i class="fas fa-hand-holding-usd"></i>
+              Withdraw</span>
+            - Stop the quiz and get a reward.</div>
+        </div>
+      </div>
+      <div class="buttons h-[60px] flex text-center items-center justify-end px-4 text-xl">
+        <button
+          class="quit h-[40px] w-[100px] shadow-none font-semibold rounded-lg mx-2 text-red-500 border border-red-400 bg-white hover:text-white hover:bg-red-600">
+          Exit Quiz
+        </button>
+        <button
+          class="continue h-[40px] w-[100px] shadow-none font-semibold rounded-lg mx-2 text-white border border-blue-400 bg-blue-500 hover:bg-blue-700">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Next Section -->
+  <div class="next-question  flex h-screen items-center justify-center bg-[#394264] hidden">
+    <div class="rounded-lg w-2/5 border border-gray-700 bg-gray-800 p-6 shadow-md">
+        <h5 class="game-status mb-3 text-2xl font-bold text-white text-center hidden"></h5>
+      <p class="point-container mb-3 text-xl font-semibold text-gray-300 mt-14 text-center hidden"></p>
+      <div class="flex h-[60px] items-center justify-end px-4 text-center text-xl mt-4">
+        <button class="next-btn mx-2 px-3 h-[40px] w-fit rounded-lg border border-green-500 bg-green-600 font-semibold text-white shadow-none hover:bg-green-700">
+          Continue
+          <!-- <i class="mx-3 fas fa-arrow-right"></i> -->
+          </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Quiz Section -->
+  <div class="question grid h-screen p-8 text-white w-screen gap-8 hidden">
+    <!-- Top Section -->
+    <div class="question-ui grid h-full gap-y-8">
+      <div class="flex relative rounded-lg overflow-hidden bg-[#394264]">
+        <div class="flex flex-grow-0 justify-between">
+          <div class="cursor-pointer flex items-center justify-center text-2xl w-16 hover:bg-[#50597b] cursor-default">
+            <button
+              class="fifty-fifty text-white h-full w-16 text-center disabled:bg-[#e64c65] disabled:text-[#9099b7]">
+              <i id="helpers" class="fas fa-balance-scale"></i>
+            </button>
+          </div>
+          <div class="cursor-pointer flex items-center justify-center text-2xl w-16 hover:bg-[#50597b] cursor-default">
+            <button
+              class="second-chance  text-white disabled:text-[#9099b7] h-full disabled:bg-[#e64c65] w-16 text-center">
+              <i id="helpers" class="fas fa-shield-alt"></i>
+            </button>
+          </div>
+        </div>
+        <div class="cursor-pointer flex items-center justify-center flex-grow text-2xl w-16 cursor-default my-1">
+          <div class="flex items-center justify-center h-fit overflow-hidden absolute w-16">
+            <div class="timer">
+              <div class="base-timer">
+                <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <g class="base-timer__circle">
+                    <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+                    <path id="base-timer-path-remaining" stroke-dasharray="283" class="base-timer__path-remaining" d="
+                        M 50, 50
+                        m -45, 0
+                        a 45,45 0 1,0 90,0
+                        a 45,45 0 1,0 -90,0
+                      "></path>
+                  </g>
+                </svg>
+                <span id="base-timer-label" class="base-timer__label">40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cursor-pointer flex items-center justify-center text-2xl w-16 hover:bg-[#50597b] cursor-default">
+          <button class="withdraw  text-white h-full w-16 text-center disabled:bg-[#e64c65] disabled:text-[#9099b7] ">
+            <i id="helpers" class="fas fa-hand-holding-usd"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Question Section -->
+      <div
+        class="question-container  cursor-context-menu flex items-center justify-center text-3xl px-8 text-center rounded-lg bg-[#394264]">
+      </div>
+      <!-- Answer Section -->
+      <div id="answer-container" class="answer-box  grid text-2xl relative gap-4">
+        <div id="0" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+          <span id="0"
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">A</span>
+          <span id="0" class="answer  ml-3"></span>
+        </div>
+        <div id="1" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+          <span id="1"
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">B</span>
+          <span id="1" class="answer  ml-3"></span>
+        </div>
+        <div id="2" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+          <span id="2"
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">C</span>
+          <span id="2" class="answer  ml-3"></span>
+        </div>
+        <div id="3" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+          <span id="3"
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">D</span>
+          <span id="3" class="answer  ml-3"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Progress Section -->
+    <div class="question-progress grid">
+      <div class="text-2xl p-3 text-center bg-[#3468af] rounded-t-lg">
+        Rewards
+      </div>
+      <div class="progress-list flex flex-col-reverse text-xl font-semibold bg-[#394264] rounded-b-lg">
+        <button id="point-1"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          1. $100
+        </button>
+        <button id="point-2"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          2. $200
+        </button>
+        <button id="point-3"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          3. $300
+        </button>
+        <button id="point-4"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          4. $400
+        </button>
+        <button id="point-5"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          5. $500
+        </button>
+        <button id="point-6"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          6. $600
+        </button>
+        <button id="point-7"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          7. $700
+        </button>
+        <button id="point-8"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          8. $800
+        </button>
+        <button id="point-9"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          9. $900
+        </button>
+        <button id="point-10"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          10. $1000
+        </button>
+        <button id="point-11"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          11. $1100
+        </button>
+        <button id="point-12"
+          class="progress-btn cursor-context-menu flex items-center justify-between flex-grow py-0 px-4 disabled:text-[#9099b7]">
+          12. $1200
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="lets-play" src="https://millionaire-school.netlify.com/sounds/lets_play.mp3"></audio>
+  <audio id="easy" src="https://millionaire-school.netlify.com/sounds/easy.mp3"></audio>
+  <audio id="wrong-answer" src="https://millionaire-school.netlify.com/sounds/wrong_answer.mp3"></audio>
+  <audio id="correct-answer" src="https://millionaire-school.netlify.com/sounds/correct_answer.mp3"></audio>
+
+  <script type="text/javascript" src="./script.js"></script>
+</body>
+
+</html>
