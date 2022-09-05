@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI LA TRIEU PHU</title>
-  <link rel="icon" href="#" />
+  <title>Who wants to be millionaire</title>
+  <link rel="icon" href="./assets/icon.png" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -71,9 +71,13 @@
         <h5 class="game-status mb-3 text-2xl font-bold text-white text-center hidden"></h5>
       <p class="point-container mb-3 text-xl font-semibold text-gray-300 mt-14 text-center hidden"></p>
       <div class="flex h-[60px] items-center justify-end px-4 text-center text-xl mt-4">
+        <button class="withdraw-btn mx-2 px-3 h-[40px] w-fit rounded-lg border border-red-400 bg-red-500 font-semibold text-white shadow-none hover:bg-red-600 hidden">
+          Withdraw
+          <i class="fas fa-hand-holding-usd"></i>
+          </button>
         <button class="next-btn mx-2 px-3 h-[40px] w-fit rounded-lg border border-green-500 bg-green-600 font-semibold text-white shadow-none hover:bg-green-700">
           Continue
-          <!-- <i class="mx-3 fas fa-arrow-right"></i> -->
+          <i class="mx-3 fas fa-arrow-right"></i>
           </button>
       </div>
     </div>
@@ -126,28 +130,28 @@
       </div>
       <!-- Question Section -->
       <div
-        class="question-container  cursor-context-menu flex items-center justify-center text-3xl px-8 text-center rounded-lg bg-[#394264]">
+        class="question-container  cursor-context-menu flex items-center justify-center text-3xl px-6 text-center rounded-lg bg-[#394264] max-h-[400px]">
       </div>
       <!-- Answer Section -->
       <div id="answer-container" class="answer-box  grid text-2xl relative gap-4">
-        <div id="0" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+        <div id="0" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150] max-h-[70px]">
           <span id="0"
-            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">A</span>
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg max-w-[60px] min-w-[60px]">A</span>
           <span id="0" class="answer  ml-3"></span>
         </div>
-        <div id="1" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+        <div id="1" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150] max-h-[70px]">
           <span id="1"
-            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">B</span>
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg max-w-[60px] min-w-[60px]">B</span>
           <span id="1" class="answer  ml-3"></span>
         </div>
-        <div id="2" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+        <div id="2" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150] max-h-[70px]">
           <span id="2"
-            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">C</span>
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg max-w-[60px] min-w-[60px]">C</span>
           <span id="2" class="answer  ml-3"></span>
         </div>
-        <div id="3" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150]">
+        <div id="3" class="answer-btn  cursor-pointer flex items-center rounded-lg bg-[#394264] hover:bg-[#fcb150] max-h-[70px]">
           <span id="3"
-            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg">D</span>
+            class="bg-[#50597b66] flex h-full text-center items-center justify-center w-20 rounded-l-lg max-w-[60px] min-w-[60px]">D</span>
           <span id="3" class="answer  ml-3"></span>
         </div>
       </div>

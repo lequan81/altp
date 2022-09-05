@@ -20,6 +20,7 @@ let continue_btn = document.querySelector(".continue");
 let next_btn = document.querySelector('.next-btn');
 let startAgainBtn = document.querySelector('.start-again');
 let withdrawBtn = document.querySelector('.withdraw');
+let withdrawNextBtn = document.querySelector('.withdraw-btn');
 
 
 // selecting audio files
@@ -246,7 +247,7 @@ const gameOver = (index) => {
     question.classList.add("hidden");
     gameStatusContainer.textContent = "Game Over";
     pointsContainer.innerHTML = ` "${quote[rand]}" <br/> -${auth[rand]}-`;
-    next_btn.textContent = "START AGAIN";
+    next_btn.innerHTML = `START AGAIN <i class="mx-3 fas fa-arrow-right"></i>`;
     next_btn.classList.remove('border-green-500');
     next_btn.classList.remove('bg-green-600');
     next_btn.classList.remove('hover:bg-green-700');
@@ -276,8 +277,8 @@ const correctAnswerFunc = () => {
   nextQuestionContainer.classList.remove("hidden");
   gameStatusContainer.classList.remove("hidden");
   pointsContainer.classList.remove('hidden');
+  question.classList.add("hidden");
   if (points < 12) {
-    question.classList.add("hidden");
     gameStatusContainer.textContent = "CORRECT";
     pointsContainer.textContent = `You have earned $ ${points}00`;
   } else {
@@ -286,6 +287,15 @@ const correctAnswerFunc = () => {
     pointsContainer.textContent = `You have earned $ ${points}00`;
     next_btn.textContent = "RESTART";
   }
+
+
+
+  if (points ===3 || points === 9) {
+    withdrawNextBtn.classList.remove('hidden');
+  } else if (points === 4 || points === 10) {
+    withdrawNextBtn.classList.add('hidden');
+  }
+
   updateProgress(points);
 };
 
@@ -443,7 +453,7 @@ const withdrawFunc = () => {
     question.classList.add("hidden");
     gameStatusContainer.textContent = "Thanks for Playing!";
     pointsContainer.textContent = '';
-    next_btn.textContent = "START AGAIN";
+    next_btn.innerHTML = `START AGAIN <i class="mx-3 fas fa-arrow-right"></i>`;
     next_btn.classList.remove('border-green-500');
     next_btn.classList.remove('bg-green-600');
     next_btn.classList.remove('hover:bg-green-700');
@@ -489,6 +499,18 @@ withdrawBtn.onclick = () => {
   resetProgress();
 }
 
+withdrawNextBtn.onclick = () => {
+  gameOn = false;
+  withdrawNextBtn.classList.add('hidden');
+  stopTimerMusic();
+  letsPlayAudio.play();
+  letsPlayAudio.volume = 0.3;
+  withdrawFunc();
+  onTimesUp();
+  resetTimer();
+  resetProgress();
+}
+
 // if startQuiz button clicked
 start_btn.onclick = () => {
   info_box.classList.add("activeInfo"); //show info box
@@ -513,7 +535,7 @@ next_btn.onclick = () => {
   nextQuestionContainer.classList.add("hidden");
   gameStatusContainer.classList.add("hidden");
   pointsContainer.classList.add('hidden');
-  next_btn.textContent = 'Continue';
+  next_btn.innerHTML = `Continue <i class="mx-3 fas fa-arrow-right"></i>`;
   next_btn.classList.add('border-green-500');
   next_btn.classList.add('bg-green-600');
   next_btn.classList.add('hover:bg-green-700');
