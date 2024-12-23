@@ -1,5 +1,8 @@
 /* Variable */
-const URL = "https://raw.githubusercontent.com/aaronnech/Who-Wants-to-Be-a-Millionaire/master/questions.json";
+// const URL = "https://raw.githubusercontent.com/aaronnech/Who-Wants-to-Be-a-Millionaire/master/questions.json";
+const URL = "./questions.json"
+// console.log(URL);
+
 let timer = document.querySelector('.timer');
 let btnBox = Array.from(document.querySelectorAll('.answer-btn'));
 let answerBox = Array.from(document.querySelectorAll('.answer'));
@@ -174,7 +177,10 @@ function setCircleDasharray() {
 const randomNumHelperFunc = num => Math.floor(Math.random() * num);
 
 const dataLoad = async () => {
-  data = await fetch(URL).then(res => res.json());
+  data = await fetch(URL, {
+    method: 'GET',
+  }).then(res => res.json());
+  console.log(data);
 };
 
 const randomQuestionGenerator = () => {
@@ -290,7 +296,7 @@ const correctAnswerFunc = () => {
 
 
 
-  if (points ===3 || points === 9) {
+  if (points === 3 || points === 9) {
     withdrawNextBtn.classList.remove('hidden');
   } else if (points === 4 || points === 10) {
     withdrawNextBtn.classList.add('hidden');
